@@ -1,0 +1,74 @@
+$xs: 575px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1600px;
+
+@mixin xs {
+	@media (max-width: $xs) {
+		@content;
+	}
+}
+@mixin sm {
+	@media (min-width: $sm) {
+		@content;
+	}
+}
+@mixin md {
+	@media (min-width: $md) {
+		@content;
+	}
+}
+@mixin lg {
+	@media (min-width: $lg) {
+		@content;
+	}
+}
+@mixin xl {
+	@media (min-width: $xl) {
+		@content;
+	}
+}
+@mixin xxl {
+	@media (min-width: $xxl) {
+		@content;
+	}
+}
+@mixin xs {
+	@media (min-width: $xs) {
+		@content;
+	}
+}
+
+.todoPage {
+  width: 100vw;
+  height: 100vh;
+
+  .sider {
+    background-color: #fff;
+    border-right: solid 1px #d9d9d9;
+  }
+  .contentArea {
+    background-color: #eee;//黒 ← 0123456789abcdef → 白
+
+    .header {
+      background-color: #fff;
+        font-size: 24px;
+        color: #333;
+        border-bottom: solid 1px #d9d9d9;
+
+        
+      }
+    
+    .content {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer {
+      background-color: #333;
+    }
+  }  
+}

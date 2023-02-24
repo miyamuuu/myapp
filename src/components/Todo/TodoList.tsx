@@ -47,35 +47,23 @@ const TodoList = () => {
   };
 
   return (
-    <Layout className="todoPage">
-      <Sider className="sider">
-        <Menu></Menu>
-      </Sider>
-      <Layout className="contentArea">
-        <Header className="header">Todoリスト</Header>
-        <Content className="content">
-          <div className="todoFormBackground">
-            <TodoForm addTodo={addTodo} />
-          </div>
-          <List
-            bordered
-            className="list"
-          >
-            {todos.map((todo) => (
-              <List.Item className="listItem">
-                <TodoItem
-                  key={todo.id}
-                  todo={todo}
-                  toggleTodo={toggleTodo}
-                  deleteTodo={deleteTodo}
-                />
-              </List.Item>
-            ))}
-          </List>
-        </Content>
-        <Footer className="footer"></Footer>
-      </Layout>
-    </Layout>
+    <>
+      <div className="todoFormBackground">
+        <TodoForm addTodo={addTodo} />
+      </div>
+      <List bordered className="list">
+        {todos.map((todo) => (
+          <List.Item className="listItem">
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />
+          </List.Item>
+        ))}
+      </List>
+    </>
   );
 };
 

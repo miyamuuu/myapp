@@ -74,11 +74,11 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
       </Form.Item>
 
       <Form.Item className="formItem">
-        <DatePicker onChange={onChangeDatePicker} />
+        <DatePicker onChange={onChangeDatePicker} placeholder="日付"/>
       </Form.Item>
 
       <Form.Item className="formItem">
-        <TimePicker format={"HH:mm"} onChange={onChangeTimePicker} />
+        <TimePicker format={"HH:mm"} onChange={onChangeTimePicker} placeholder="時間"/>
       </Form.Item>
 
       <Form.Item className="formItem">

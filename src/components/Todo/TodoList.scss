@@ -41,47 +41,17 @@ $xxl: 1600px;
 	}
 }
 
-.todoPage {
-  width: 100vw;
-  height: 100vh;
+.todoFormBackground {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  border: solid 1px #d9d9d9;
+  margin-bottom: 8px;
+}
 
-  .sider {
-    background-color: #fff;
-    border-right: solid 1px #d9d9d9;
-  }
-  .contentArea {
-    background-color: #eee;//黒 ← 0123456789abcdef → 白
-
-    .header {
-      background-color: #fff;
-        font-size: 24px;
-        color: #333;
-        border-bottom: solid 1px #d9d9d9;
-      }
-    
-    .content {
-      padding: 8px;
-      display: flex;
-      flex-direction: column;
-
-      .todoFormBackground {
-        background-color: #fff;
-        padding: 16px;
-        border-radius: 8px;
-        border: solid 1px #d9d9d9;
-        margin-bottom: 8px;
-      }
-
-      .list {
-        background-color: #fff;
-        padding: 8px;
-        flex: content;
-        overflow-y: auto;
-      }
-    }
-    
-    .footer {
-      background-color: #333;
-    }
-  }  
+.list {
+  background-color: #fff;
+  padding: 8px;
+  flex: content;
+  overflow-y: auto;
 }

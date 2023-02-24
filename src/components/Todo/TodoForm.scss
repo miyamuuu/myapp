@@ -1,7 +1,49 @@
+$xs: 575px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1600px;
+
+@mixin xs {
+	@media (max-width: $xs) {
+		@content;
+	}
+}
+@mixin sm {
+	@media (min-width: $sm) {
+		@content;
+	}
+}
+@mixin md {
+	@media (min-width: $md) {
+		@content;
+	}
+}
+@mixin lg {
+	@media (min-width: $lg) {
+		@content;
+	}
+}
+@mixin xl {
+	@media (min-width: $xl) {
+		@content;
+	}
+}
+@mixin xxl {
+	@media (min-width: $xxl) {
+		@content;
+	}
+}
+
 .todoForm {
   width: 100%;
   display: flex;
-  padding-left: 8px;
+  padding-left: 4px;
+
+  @include md {
+    padding-left: 8px;
+  }
 
   .formItem {
 
@@ -9,8 +51,13 @@
         flex: content;
     }
 
-    &:nth-of-type(3),&:nth-of-type(4) {
+    &:nth-of-type(3) {
       width: 120px;
+    }
+
+    &:nth-of-type(4) {
+      width: 120px;
+    
     }
   }
 }

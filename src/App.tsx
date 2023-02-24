@@ -1,4 +1,4 @@
-import TodoList from "./components/Todo/TodoList";
+import TodoPage from "./components/Todo/TodoPage";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { Routers } from "./Routers";
 import "./reset.css";
@@ -6,7 +6,7 @@ import "./reset.css";
 const App = () => {
   return (
     <Router>
-      <TodoList />
+      <TodoPage />
     </Router>
   );
 };
