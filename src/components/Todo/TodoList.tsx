@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
-import { Layout, List, Menu } from "antd";
+import { List } from "antd";
 import "./TodoList.scss";
-
-const { Header, Footer, Sider, Content } = Layout;
 
 interface Todo {
   id: number;
   user: string;
   text: string;
   date: string;
+  time: string;
   completed: boolean;
 }
 
-const TodoList = () => {
+interface Props {
+  pcSize: boolean;
+}
+
+const TodoList= ({pcSize}: Props) => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const addTodo = (text: string, user: string, date: string) => {
+  const addTodo = (
+    text: string,
+    user: string,
+    date: string,
+    time: string,
+  ) => {
     const newTodo: Todo = {
       id: Date.now(),
       user,
       text,
       date,
+      time,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -49,7 +58,7 @@ const TodoList = () => {
   return (
     <>
       <div className="todoFormBackground">
-        <TodoForm addTodo={addTodo} />
+        <TodoForm addTodo={addTodo} pcSize={pcSize}/>
       </div>
       <List bordered className="list">
         {todos.map((todo) => (

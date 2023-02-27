@@ -10,6 +10,7 @@ interface TodoItemProps {
     user: string;
     text: string;
     date: string;
+    time: string;
     completed: boolean;
   };
   toggleTodo: (id: number) => void;
@@ -38,6 +39,11 @@ const TodoItem = ({ todo, toggleTodo, deleteTodo }: TodoItemProps) => {
       <Text
         className="todoDate"
       >{todo.date}</Text>
+      <Text
+        className="todoTime"
+      >
+        {todo.time}
+      </Text>
       <Button onClick={handleDelete}>削除</Button>
     </div>
   );

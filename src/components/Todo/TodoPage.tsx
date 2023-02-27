@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Button, Drawer, Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { Button, Drawer, Layout, Menu, Typography } from "antd";
+import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import TodoList from "./TodoList";
 import "./TodoPage.scss";
 
@@ -8,7 +9,7 @@ const { Header, Sider, Content, Footer } = Layout;
 const TodoPage = () => {
   // ローカルのステート一覧
   const [state, setState] = useState({
-    pcSize: true,
+    pcSize: true, // 画面の横幅がpcサイズ(768px)以上はtrue
     openDrawer: false, // モバイルスライドインメニューのOPEN/CLOSE
     screenWidth: window.innerWidth, // 画面の横幅
     screenHeight: window.innerHeight, // 画面の縦幅
@@ -17,39 +18,44 @@ const TodoPage = () => {
   // ウィンドウサイズが変更される度に処理
   const windowReSize = () => {
     if (window.innerWidth >= 768) {
-      // ウィンドウサイズの横幅が768以上の場合は画面サイズを更新しモバイルスライドインメニューをOFFにする
+      // ウィンドウサイズの横幅が768以上の場合
       setState({
         ...state,
         pcSize: true,
-        openDrawer: false,
         screenWidth: window.innerWidth,
         screenHeight: window.innerHeight,
       });
     } else {
-      // // ウィンドウサイズの横幅が768未満の場合は画面サイズのみを更新する
+      // ウィンドウサイズの横幅が768未満の場合
       setState({
         ...state,
         pcSize: false,
-        openDrawer: false,
         screenWidth: window.innerWidth,
         screenHeight: window.innerHeight,
       });
     }
+    console.log(state.pcSize);
   };
 
   window.onresize = windowReSize;
   window.ondeviceorientation = windowReSize;
 
   return (
-    <Layout className="todoPage">
+    <Layout
+      className="todoPage"
+      style={{ height: state.screenHeight, width: state.screenWidth }}
+    >
       {state.pcSize ? (
         <Sider className="sider">
-          <Menu></Menu>
+          <p>aaaaa</p>
         </Sider>
       ) : (
         <Drawer
-          title="Basic Drawer"
-          placement="left"
+          title="MENU"
+          placement="right"
+          width="100%"
+          zIndex={1}
+          closable={false}
           onClose={() => setState({ ...state, openDrawer: false })}
           open={state.openDrawer}
         >
@@ -60,19 +66,21 @@ const TodoPage = () => {
       )}
       <Layout className="contentArea">
         <Header className="header">
-          {state.pcSize ? null : (
+          <Typography>Todoリスト</Typography>
+          {state.pcSize || (
             <Button
-              type="primary"
-              onClick={() => setState({ ...state, openDrawer: true })}
-            >
-              memu
-            </Button>
+              className="MenuButton"
+              icon={state.openDrawer ? <CloseOutlined /> : <MenuOutlined />}
+              onClick={() => setState({ ...state, openDrawer: !state.openDrawer })}
+            />
           )}
         </Header>
         <Content className="content">
-          <TodoList />
+          <TodoList pcSize={state.pcSize} />
         </Content>
-        <Footer className="footer"></Footer>
+        <Footer className="footer">
+          <p>Miyamoto Tomoya 2023</p>
+        </Footer>
       </Layout>
     </Layout>
   );

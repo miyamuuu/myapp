@@ -37,27 +37,64 @@ $xxl: 1600px;
 }
 
 .todoForm {
-  width: 100%;
-  display: flex;
-  padding-left: 4px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 40px 40px 40px;
+	align-items: center;
 
-  @include md {
-    padding-left: 8px;
-  }
+	@include md {
+		width: 100%;
+		display: flex;
+		padding-left: 8px;
+	}
 
   .formItem {
 
+		@include md {
+			display: flex;
+		}
+
+		&:nth-of-type(1) {
+			grid-column: 1 / 2;
+
+			@include md {
+				width: auto;
+			}
+		}
+
     &:nth-of-type(2) {
-        flex: content;
+			grid-column: 2 / 3;
+		
+			@include md {
+				flex: content;
+			}
     }
 
     &:nth-of-type(3) {
-      width: 120px;
+			grid-column: 3 / 4;
+			width: fit-content;
+
+			@include md {
+				width: 120px;
+			}
     }
 
     &:nth-of-type(4) {
-      width: 120px;
-    
+			grid-column: 1 / 4;
+
+			@include md {
+				width: 120px;
+			}
     }
+
+		&:nth-of-type(5) {
+			grid-column: 1 / 4;
+			display: flex;
+			justify-content: end;
+
+			@include md {
+				width: auto;
+			}
+		}
   }
 }

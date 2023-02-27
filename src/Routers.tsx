@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TodoList from "./components/Todo/TodoList";
+import TodoPage from "./components/Todo/TodoPage";
 
 
 export const Routers = () => {
     return (
         <BrowserRouter>
           <Routes>
-            <Route path="/components/TodoList" element={<TodoList />} />
+            <Route path="/components/TodoPage" element={<TodoPage />} />
           </Routes>
         </BrowserRouter>
     )

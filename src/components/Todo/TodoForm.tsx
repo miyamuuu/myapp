@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {
-  Form,
-  Select,
-  Button,
-  Input,
-  DatePicker,
-  TimePicker,
-} from "antd";
+import { Form, Select, Button, Input, DatePicker, TimePicker } from "antd";
 import dayjs from "dayjs";
 import "./TodoForm.scss";
 
-interface TodoFormProps {
+interface Props {
   addTodo: (text: string, user: string, date: string, time: string) => void;
+  pcSize: boolean;
 }
 
-const TodoForm = ({ addTodo }: TodoFormProps) => {
-  const [users, setUsers] = useState<User[]>([]);
+const TodoForm = ({ addTodo, pcSize }: Props) => {
 
+  const [users, setUsers] = useState<User[]>([]);
+  
   type User = {
     value: string;
     label: string;
@@ -46,7 +41,7 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
     setTime(timeString);
   };
 
-    // 作成を押した時
+  // 作成を押した時
   const onFinishTodoCreate = () => {
     if (!text) return;
     addTodo(text, user, date, time);
@@ -55,37 +50,81 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
 
   return (
     <Form onFinish={onFinishTodoCreate} layout="inline" className="todoForm">
+      {pcSize ? (
+        <>
+          <Form.Item className="formItem">
+            <Select
+              defaultValue="全て"
+              onChange={(value) => setUser(value)}
+              options={users}
+              className="todoSelect"
+            />
+          </Form.Item>
 
-      <Form.Item className="formItem">
-        <Select
-          defaultValue="全て"
-          onChange={(value) => setUser(value)}
-          options={users}
-          className="todoSelect"
-        />
-      </Form.Item>
+          <Form.Item className="formItem">
+            <Input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </Form.Item>
 
-      <Form.Item className="formItem">
-        <Input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </Form.Item>
+          <Form.Item className="formItem">
+            <DatePicker onChange={onChangeDatePicker} placeholder="日付" />
+          </Form.Item>
 
-      <Form.Item className="formItem">
-        <DatePicker onChange={onChangeDatePicker} placeholder="日付"/>
-      </Form.Item>
+          <Form.Item className="formItem">
+            <TimePicker
+              format={"HH:mm"}
+              onChange={onChangeTimePicker}
+              placeholder="時間"
+            />
+          </Form.Item>
 
-      <Form.Item className="formItem">
-        <TimePicker format={"HH:mm"} onChange={onChangeTimePicker} placeholder="時間"/>
-      </Form.Item>
+          <Form.Item className="formItem">
+            <Button type="primary" htmlType="submit">
+              作成
+            </Button>
+          </Form.Item>
+        </>
+      ) : (
+        <>
+          <Form.Item className="formItem">
+            <Select
+              defaultValue="全て"
+              onChange={(value) => setUser(value)}
+              options={users}
+              className="todoSelect"
+            />
+          </Form.Item>
 
-      <Form.Item className="formItem">
-        <Button type="primary" htmlType="submit">
-          作成
-        </Button>
-      </Form.Item>
+          <Form.Item className="formItem">
+            <DatePicker onChange={onChangeDatePicker} placeholder="日付" />
+          </Form.Item>
+
+          <Form.Item className="formItem">
+            <TimePicker
+              format={"HH:mm"}
+              onChange={onChangeTimePicker}
+              placeholder="時間"
+            />
+          </Form.Item>
+
+          <Form.Item className="formItem">
+            <Input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </Form.Item>
+
+          <Form.Item className="formItem">
+            <Button type="primary" htmlType="submit">
+              作成
+            </Button>
+          </Form.Item>
+        </>
+      )}
     </Form>
   );
 };
