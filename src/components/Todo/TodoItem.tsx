@@ -1,5 +1,6 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Checkbox, Button, Typography } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import "./TodoItem.scss";
 
 const { Text } = Typography;
@@ -15,9 +16,17 @@ interface TodoItemProps {
   };
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  pcSize: boolean;
+  editMode: boolean;
 }
 
-const TodoItem = ({ todo, toggleTodo, deleteTodo }: TodoItemProps) => {
+const TodoItem = ({
+  todo,
+  toggleTodo,
+  deleteTodo,
+  pcSize,
+  editMode,
+}: TodoItemProps) => {
   const handleToggle = () => {
     toggleTodo(todo.id);
   };
@@ -28,23 +37,28 @@ const TodoItem = ({ todo, toggleTodo, deleteTodo }: TodoItemProps) => {
 
   return (
     <div className="todoItem">
-      <Checkbox checked={todo.completed} onChange={handleToggle} />
+      <Checkbox
+        className="checkbox"
+        checked={todo.completed}
+        onChange={handleToggle}
+      />
       <Text className="userText">{todo.user}</Text>
       <Text
-        style={{ textDecoration: todo.completed ? "line-through" : "none" }}
         className="todoText"
+        style={{ textDecoration: todo.completed ? "line-through" : "none" }}
       >
         {todo.text}
       </Text>
-      <Text
-        className="todoDate"
-      >{todo.date}</Text>
-      <Text
-        className="todoTime"
-      >
-        {todo.time}
-      </Text>
-      <Button onClick={handleDelete}>削除</Button>
+      <Text className="todoDate">{todo.date}</Text>
+      <Text className="todoTime">{todo.time}</Text>
+      {editMode && (
+        <Button
+          className="deleteButton"
+          icon={<DeleteOutlined />}
+          danger
+          onClick={handleDelete}
+        ></Button>
+      )}
     </div>
   );
 };

@@ -43,7 +43,7 @@ $xxl: 1600px;
 
 .todoFormBackground {
   background-color: #fff;
-  padding: 16px;
+	padding: 24px;
   border-radius: 8px;
   border: solid 1px #d9d9d9;
   margin-bottom: 8px;
@@ -51,7 +51,22 @@ $xxl: 1600px;
 
 .list {
   background-color: #fff;
-  padding: 8px;
-  flex: content;
   overflow-y: auto;
+	position: relative;
+	
+	.ant-list-header{
+		display: flex;
+		justify-content: space-between;
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background-color: #fff;
+		border-bottom: solid 1px #d9d9d9;
+		box-shadow: 0 4px 4px rgba($color: #d9d9d9, $alpha: 0.2);
+	}
+
+	.userList {
+		display: flex;
+		gap: 0 16px;
+	}
 }
